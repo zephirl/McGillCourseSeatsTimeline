@@ -1,0 +1,50 @@
+﻿Course Subject;Course ID;Course Name
+COMP;202;Foundations of Programming
+COMP;204;Comp. Programming for Life Sci
+COMP;206;Intro to Software Systems
+COMP;208;Computer Programming for PS&E
+COMP;230;Logic and Computability
+COMP;250;Intro to Computer Science
+COMP;251;Algorithms and Data Structures
+COMP;273;Intro to Computer Systems
+COMP;302;Programming Lang & Paradigms
+COMP;303;Software Design
+COMP;310;Operating Systems
+COMP;321;Programming Challenges
+COMP;330;Theory of Computation
+COMP;350;Numerical Computing
+COMP;360;Algorithm Design
+COMP;361D1;Software Engineering Project
+COMP;396;Undergraduate Research Project
+COMP;400;Project in Computer Science
+COMP;401;Project in Biol. & Comp. Sci.
+COMP;402D1;Honours Project CS and Biology
+COMP;417;Intro Robots&Intelligent Sys
+COMP;445;Computational Linguistics
+COMP;462;Computational Biology Methods
+COMP;480;Indep Studies in Comp Sci
+COMP;512;Distributed Systems
+COMP;521;Modern Computer Games
+COMP;531;Advanced Theory of Computation
+COMP;535;Computer Networks
+COMP;547;Cryptography & Data Security
+COMP;550;Natural Language Processing
+COMP;551;Applied Machine Learning
+COMP;557;Fundamentals of Comp. Graphics
+COMP;558;Fund. of Computer Vision
+COMP;561;Comp. Biol. Methods & Research
+COMP;565;ML in Genomics & Healthcare
+COMP;596;Topics in Computer Science 3
+COMP;597;Topics in Computer Science 4
+COMP;598;Topics in Computer Science 1
+COMP;599;Topics in Computer Science 2
+COMP;602;Computer Science Seminar 1
+COMP;647;Advanced Cryptography
+COMP;690;Probabilistic Anal of Algor
+COMP;693;Research Project 1
+COMP;694;Research Project 2
+COMP;695;Research Project 3
+COMP;697;Thesis Research 3
+COMP;700;Ph.D.Comprehensive Examination
+COMP;701;Thesis Proposal and Area Exam
+COMP;761;Advanced Topics Theory 2
