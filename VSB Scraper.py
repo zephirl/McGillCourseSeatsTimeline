@@ -1,6 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-from bs4 import BeautifulSoup
+import pymongo
 import time
 from selenium.webdriver.common.keys import Keys
 import csv
@@ -95,9 +95,9 @@ def iterateThroughComp(driver, file):
                 if line_count == 0:
                     line_count += 1
                 
-                # else:
-                elif line_count <= 4: # For debugging
-                    line_count += 1
+                else:
+                # elif line_count <= 4: # For debugging
+                #     line_count += 1
                     courseData = getSeats_byCourseCode(driver, (row[0]+" "+row[1]))
                     for sectionData in courseData:
                         print(f'\t{row[0]} {row[1]} ({row[2]}) with crn {sectionData[0]} has {sectionData[1]} seats available, with {sectionData[2]} seats available on the waitlist.')
