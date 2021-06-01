@@ -30,25 +30,56 @@ def getSeats_byCourseCode(driver, courseCode):
     crnsInput.send_keys(Keys.ENTER)
     time.sleep(1)
     
-    seatNumbers = []
+
+    courseData = set() # (crns;seatNumbers;waitingLists) - a set is used to avoid duplicates
+    
+    pageNumber =  int(driver.find_element_by_class_name("resultMax").get_attribute("innerHTML")) # When multiple sections are on different pages
+    
+    for i in range (pageNumber):
+        pageData = getElementsOnPage(driver)
+        courseData = courseData.union(pageData)
+        time.sleep(0.2)
+        driver.find_element_by_xpath('//*[@id="page_results"]/div[5]/div[3]/div[3]/div[1]/table/tbody/tr[1]/td[4]/a').click()
+    
+            
+    return courseData
+
+
+
+def getElementsOnPage(driver):
+    sectionData = set()
     crns = []
+    seatNumbers = []
+    waitingLists = []
     
     try:
-        courseBoxHTML = driver.find_elements_by_class_name("course_box be0")
+        seatNumberElements = driver.find_elements_by_class_name("seatText")
     except:
         print("sleepmore")
         time.sleep(1)
-        courseBoxHTML = driver.find_elements_by_class_name("course_box be0")
+        seatNumberElements = driver.find_elements_by_class_name("seatText")
 
     finally:
         seatNumberElements = driver.find_elements_by_class_name("seatText")
         crnElements = driver.find_elements_by_class_name("crn_value")
+        # waitingListElements = TODO
         for seatNumber in seatNumberElements:
             seatNumbers.append(seatNumber.get_attribute("innerHTML"))
         for crn in crnElements:
             crns.append(crn.get_attribute("innerHTML"))
+            waitingLists.append(-1)
+        # for waitingList in waitingListElements:
+        #     waitingLists.append(waitingList.get_attribute("innerHTML"))
             
-    return seatNumbers,crns,courseBoxHTML
+        
+        
+        for i in range (len(crns)):
+            sectionDataTuple = tuple([ crns[i], seatNumbers[i], waitingLists[i] ]) # Needs to be converted into a tuple to be in a set 
+            sectionData.add(sectionDataTuple)
+    
+    
+    return sectionData
+
 
 
 def iterateThroughComp(driver, file):
@@ -63,12 +94,14 @@ def iterateThroughComp(driver, file):
             for row in csv_reader:
                 if line_count == 0:
                     line_count += 1
-                    
-                else:
-                    seatNumbers,crns,courseBoxHTML = getSeats_byCourseCode(driver, (row[0]+" "+row[1]))
-                    for i in range(len(seatNumbers)):
-                        print(f'\t{row[0]} {row[1]} ({row[2]}) with crn {crns[i]} has {seatNumbers[i]} seats available.')
-                        output_writer.writerow([row[0], row[1], row[2], crns[i], seatNumbers[i],'',courseBoxHTML,''])
+                
+                # else:
+                elif line_count <= 4: # For debugging
+                    line_count += 1
+                    courseData = getSeats_byCourseCode(driver, (row[0]+" "+row[1]))
+                    for sectionData in courseData:
+                        print(f'\t{row[0]} {row[1]} ({row[2]}) with crn {sectionData[0]} has {sectionData[1]} seats available, with {sectionData[2]} seats available on the waitlist.')
+                        output_writer.writerow([row[0], row[1], row[2], sectionData[0], sectionData[1],sectionData[2],'',''])
 
 if __name__ == "__main__":
     driver = initialize()
