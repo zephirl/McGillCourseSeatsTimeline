@@ -8,10 +8,10 @@ This is still in development:
 DONE:
 + Iterate through all COMP FALL 2021 course and check the number of seats available (and waitlist if applicable) on VSB with Seleniunm web scraper
 + Save data to MangoDB with pyMango
++ Automated in Heroku : Implemented in a Heroku server so that it can automatically save course data multiple times per day
 
 TODO:
 + Create .env for credentials
-+ Automate with Heroku (in process)
 + Add COMP WINTER 2021
 + Add ALL courses
 + Add data visulation
